@@ -67,7 +67,7 @@ public class EmployeeServiceImpl implements EmployeeService, UserDetailsService 
 		helper.setSubject("PeopleCentral Onboarding Verification");
 		String content = "<center><h1>Welcome to PeopleCentral</h1>" + "<h3> Dear, " + employee.getEmpFirstName()
 				+ "</h3>" + "<h4>Please click the link below to Activate your account</h4></center>" + "<center>"
-				+ "http://localhost:8045/application/verifyEmployee?verificationToken="
+				+ "https://hutechpayrollapp.herokuapp.com/application/verifyEmployee?verificationToken="
 				+ employee.getVerificationToken() + "</center>";
 
 		message.setContent(content, "text/html; charset=utf-8");
