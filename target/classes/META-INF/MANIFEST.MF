@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: HutechPayrollApp
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: JARVIS
+Implementation-Vendor-Id: com.hutech
+Build-Jdk: 1.8.0_311
+Implementation-URL: https://spring.io/projects/spring-boot/HutechPayro
+ llApp
+Created-By: Maven Integration for Eclipse
+
