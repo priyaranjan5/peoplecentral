@@ -27,8 +27,16 @@ public class Employee {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String verificationToken;
 	private boolean enabled;
-
+	private String resetToken;
 	
+	public String getResetToken() {
+		return resetToken;
+	}
+
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
+	}
+
 	private String phnoeNumber;
 
 	private String gender;

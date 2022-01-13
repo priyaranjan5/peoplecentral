@@ -26,6 +26,7 @@ public class AdminLogin {
 	@Column(name = "password")
 	private String password;
 	
+	@Column(name="confirm_password")
 	private String resetPassword;
 
 	private Boolean isAdmin;

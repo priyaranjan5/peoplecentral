@@ -83,7 +83,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 						"/check", "https://ecstatic-joliot-113494.netlify.app/", "/addDocumentInfo",
 						"/uploadDocument/{id}", "/getDocument/{id}", "/getDocumentDetails/{id}",
 						"/addFamilyInformation", "/getFamilyInfoById/{familyId}", "/deleteFamilyInfo/{familyId}",
-						"/images/**", "/css/**", "/scripts/**","/findAdmin/{id}")
+						"/images/**", "/css/**", "/scripts/**", "/findAdmin/{id}", "/forgot-admin-password",
+						"/reset-admin-password")
 				.permitAll().anyRequest().authenticated().and().exceptionHandling().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.hutech.payrollapp.api.model.AdminLogin;
 import com.hutech.payrollapp.api.model.Employee;
 
 @Repository
@@ -16,6 +17,7 @@ public interface EmployeeRepository extends CrudRepository<Employee, String> {
 	Employee findByEmpId(String empId);
 
 	List<Employee> findByResetPassword(String token);
+	Employee findByResetToken(String resetToken);
 	
 	@Query("SELECT t FROM Employee t WHERE t.verificationToken = ?1")
 	Employee findByVerificationToken(String verificationToken);
