@@ -119,7 +119,7 @@ public class AdminLoginController {
 		helper.setSubject("Password Reset Request");
 		String content = "<center><h1>Welcome to PeopleCentral</h1>"
 				+ "<h4>Please click the link below to reset your password</h4></center>" + "<center>"
-				+ "http://localhost:8045/application/reset_your_password" + "</center>";
+				+ "https://hutechpayrollapp.herokuapp.com/application/reset_your_password" + "</center>";
 		message.setContent(content, "text/html; charset=utf-8");
 		javaMailSender.send(message);
 		return "Message sent";
