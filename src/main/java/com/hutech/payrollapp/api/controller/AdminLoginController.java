@@ -138,7 +138,7 @@ public class AdminLoginController {
 		String response = loginService.forgotPassword(empEmail);
 
 		if (!response.startsWith("Invalid")) {
-			response = "http://localhost:8045/application/reset-admin-password?adminToken=" + response;
+			response = "https://hutechpayrollapp.herokuapp.com/application/reset-admin-password?adminToken=" + response;
 		}
 		AdminLogin ad = adminRepository.findByEmpEmail(empEmail);
 		MimeMessage message = javaMailSender.createMimeMessage();
