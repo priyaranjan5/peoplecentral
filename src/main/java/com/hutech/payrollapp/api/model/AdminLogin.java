@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "admin_info", uniqueConstraints = @UniqueConstraint(columnNames = "userName"))
@@ -25,14 +23,14 @@ public class AdminLogin {
 
 	@Column(name = "password")
 	private String password;
-	
-	@Column(name="confirm_password")
+
+	@Column(name = "confirm_password")
 	private String resetPassword;
 
 	private Boolean isAdmin;
 	private Boolean isManager;
 	private String adminToken;
-	
+
 	public String getAdminToken() {
 		return adminToken;
 	}
@@ -65,16 +63,6 @@ public class AdminLogin {
 		this.isManager = isManager;
 	}
 
-/*	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}*/
-	
-	
-
 	public String getPassword() {
 		return password;
 	}
@@ -91,8 +79,7 @@ public class AdminLogin {
 		this.password = password;
 	}
 
-	public AdminLogin(@NotEmpty @Email String empEmail, Boolean isAdmin, Boolean isManager,
-			@NotEmpty @Size(min = 8, message = "password should have at least 8 character") String password) {
+	public AdminLogin(@Email String empEmail, Boolean isAdmin, Boolean isManager, String password) {
 		super();
 		this.empEmail = empEmail;
 		this.isAdmin = isAdmin;

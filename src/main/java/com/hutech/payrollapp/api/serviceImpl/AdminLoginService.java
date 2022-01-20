@@ -2,7 +2,6 @@ package com.hutech.payrollapp.api.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,9 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.hutech.payrollapp.api.model.AdminLogin;
-import com.hutech.payrollapp.api.model.Employee;
 import com.hutech.payrollapp.api.repository.AdminRepository;
-import com.hutech.payrollapp.api.repository.EmployeeRepository;
 
 import net.bytebuddy.utility.RandomString;
 
@@ -22,9 +19,6 @@ public class AdminLoginService implements UserDetailsService {
 
 	@Autowired
 	private AdminRepository adminRepository;
-
-	@Autowired
-	private EmployeeRepository empRepo;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

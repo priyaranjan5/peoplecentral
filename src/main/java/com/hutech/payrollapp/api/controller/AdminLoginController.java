@@ -2,13 +2,10 @@ package com.hutech.payrollapp.api.controller;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,7 +13,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +38,7 @@ import net.bytebuddy.utility.RandomString;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AdminLoginController {
+	
 	@GetMapping("/adminlogin")
 	public String login() {
 		return "adminLogin";
@@ -54,15 +51,8 @@ public class AdminLoginController {
 
 	private static final @NotEmpty @Size(min = 8, message = "password should have at least 8 character") String String = null;
 
-	/*
-	 * @Autowired private AuthenticationManager authenticationManager;
-	 */
-
 	@Autowired
 	private EmployeeRepository employeeRepository;
-
-	@Autowired
-	private JavaMailSender javaMailSender;
 
 	@Autowired
 	private JwtUtil jwtTokenUtil;
@@ -75,6 +65,9 @@ public class AdminLoginController {
 
 	@Autowired
 	private EmployeeServiceImpl employeeServiceImpl;
+	
+	@Autowired
+	private JavaMailSender javaMailSender;
 
 	@PostMapping("/logintoken")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AdminRequest adminrequest)
@@ -109,7 +102,6 @@ public class AdminLoginController {
 		adminRepository.save(adminLogin);
 		return "Admin Added";
 	}
-
 	@PostMapping("/findAdmin/{empEmail}")
 	public String find(@PathVariable String empEmail) throws MessagingException {
 		AdminLogin ad = adminRepository.findByEmpEmail(empEmail);
@@ -147,7 +139,7 @@ public class AdminLoginController {
 		helper.setSubject("Password Reset Request");
 		String content = "<center><h1>Welcome to PeopleCentral</h1>"
 				+ "<h4>Please click the link below to reset your password</h4></center>" + "<center>"
-				+ "http://localhost:8045/application/showform" + "</center>";
+				+ "https://serene-leavitt-589e50.netlify.app/forgotpassword" + "</center>";
 		message.setContent(content, "text/html; charset=utf-8");
 		javaMailSender.send(message);
 		// return "Please Check Your Registered Email Id for Password Reset Link!!!";
@@ -159,5 +151,3 @@ public class AdminLoginController {
 		return loginService.resetPassword(adminToken, password);
 	}
 }
-
-//?verificationToken=" + ad.getAdminToken()
