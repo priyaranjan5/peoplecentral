@@ -65,19 +65,11 @@ public class EmployeeController {
 	@PutMapping("/addMultipartfile/{empId}")
 	public String addMultipartFile(@RequestParam("image") MultipartFile image,
 			@RequestParam("resume") MultipartFile resume, @PathVariable String empId) throws IOException, ApiException {
-		/*
-		 * if
-		 * (image.getContentType().equals("image/jpeg")||image.getContentType().equals(
-		 * "image/png")) { if
-		 * (resume.getContentType().equals("application/pdf")||resume.getContentType().
-		 * equals(
-		 * "application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
-		 */
-		if (image.getContentType().equals("image/jpeg")||image.getContentType().equals("image/png")) {
-				employeeService.addFile(image, resume, empId);
-				return "File Uploaded Successfully!!!";
+		if (image.getContentType().equals("image/jpeg") || image.getContentType().equals("image/png")) {
+			employeeService.addFile(image, resume, empId);
+			return "File Uploaded Successfully!!!";
 		}
-			return "Uploaded File Format is not Supported. Please Upload jpeg/png for Image and pdf/doc for Resume!!!";
+		return "Uploaded File Format is not Supported. Please Upload jpeg/png for Image and pdf/doc for Resume!!!";
 	}
 
 	@GetMapping("/getEmployeeById/{empId}")
@@ -121,17 +113,10 @@ public class EmployeeController {
 		}
 	}
 
-/*	@GetMapping("/login")
-	public ModelAndView login() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("login");
-		return mv;
-	}*/
-	
 	@GetMapping("/login")
 	public RedirectView loginRedirection() {
-		RedirectView view=new RedirectView();
-		view.setUrl("https://ecstatic-joliot-113494.netlify.app/");
+		RedirectView view = new RedirectView();
+		view.setUrl("https://serene-leavitt-589e50.netlify.app/");
 		return view;
 	}
 
@@ -162,35 +147,3 @@ public class EmployeeController {
 		return msg;
 	}
 }
-
-/*
- * @PostMapping("/onboardEmployee") public String
- * addEmployee(@Valid @RequestParam("image") MultipartFile
- * image,@RequestParam("resume") MultipartFile resume, @RequestPart Employee
- * employee) throws IOException, IdAlreadyExistException,
- * EmailAlreadyExistException, MessagingException { employeeService.save(image,
- * resume, employee); return
- * "Employee Onboarded. Please check your registered email id: " +
- * employee.getEmpEmail(); }
- */
-
-/*
- * @PostMapping("/check") public ResponseEntity<?> empInfo(@RequestBody Employee
- * emp) { final UserDetails userDetails =
- * employeeServiceImpl.loadUserByUsername(emp.getEmpEmail()); return
- * ResponseEntity.ok(userDetails); }
- */
-
-/*
- * MimeMessage message = mailSender.createMimeMessage(); MimeMessageHelper
- * helper = new MimeMessageHelper(message);
- * helper.setTo(employee.getEmpEmail());
- * helper.setSubject("PeopleCentral Onboarding Verification"); String content =
- * "<center><h1>Welcome to PeopleCentral</h1>" + "<h3> Dear, " +
- * employee.getEmpFirstName() + "</h3>" +
- * "<h4>Please click the link below to Activate your account</h4></center>" +
- * "<center>" +
- * "http://localhost:8045/application/createPassword/verify?verificationCode=" +
- * "</center>"; message.setContent(content, "text/html; charset=utf-8");
- * mailSender.send(message);
- */
